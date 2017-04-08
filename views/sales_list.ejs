@@ -61,6 +61,52 @@
         <!-- /.container -->
     </nav>
 
+    <!-- Full Width Image Header -->
+
+    <header class="header-image">
+        <div class="headline">
+            <div class="container">
+                <h1>Sales list</h1>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Content -->
+    <hr class="featurette-divider">
+    <table class = "table">
+      <thead>
+        <tr>
+          <td>No.</td>
+          <td>Name</td>
+          <td>Quantity</td>
+          <td>Time</td>
+          <td>Week in Year</td>
+          <td><a href="../add">Add Sales</a></td>
+        </tr>
+      </thead>
+      <tbody>
+        <% list.rows.forEach(function(sale){ %>
+          <tr>
+            <td><%=sale.id%></td>
+            <td><%=sale.name%></td>
+            <td><%=sale.quantity%></td>
+            <td><%=sale.date%>-<%=sale.month%>-<%=sale.year%> <%=sale.hour%>h<%=sale.minute%>'</td>
+            <td><%=sale.weekyear%></td>
+            <td><a href="../../edit/<%=sale.id%>">Edit</a>  <a href="../../remove/<%=sale.id%>">Remove</a></td>
+          </tr>
+          <%
+        }); %>
+
+
+      </tbody>
+    </table>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="../../js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../../js/bootstrap.min.js"></script>
 
 </body>
 
