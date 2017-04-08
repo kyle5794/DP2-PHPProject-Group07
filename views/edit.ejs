@@ -26,7 +26,9 @@
 </head>
 
 <script>
-   
+    $(document).ready(function(){
+
+    })
 </script>
 <body>
 
@@ -62,7 +64,110 @@
         <!-- /.container -->
     </nav>
 
-  
+    <!-- Full Width Image Header -->
+
+    <header class="header-image">
+        <div class="headline">
+            <div class="container">
+                <h1>Edit Sales</h1>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Content -->
+    <h2>Old record:</h2>
+  <hr class="featurette-divider">
+    <table class = "table">
+      <thead>
+        <tr>
+          <td>No.</td>
+          <td>Name</td>
+          <td>Quantity</td>
+          <td>Time</td>
+          <td>Week in Year</td>
+        </tr>
+      </thead>
+      <tbody>
+        <td><%=edit_sale.id%></td>
+        <td><%=edit_sale.name%></td>
+        <td><%=edit_sale.quantity%></td>
+        <td><%=edit_sale.date%>-<%=edit_sale.month%>-<%=edit_sale.year%> <%=edit_sale.hour%>h<%=edit_sale.minute%>'</td>
+        <td><%=edit_sale.weekyear%></td>
+      </tbody>
+    </table>
+      <h2>Edit:</h2>
+    <hr class="featurette-divider">
+    <form class="" action="../edit" method="POST" enctype="application/x-www-form-urlencoded">
+      <input type="hidden" value="<%=edit_sale.id%>" name="id">
+      <div class="form-group" class = "">
+        <label for="Type">Type:</label>
+
+        <select class="form-control" id="Type" name="name">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+
+
+      </div>
+
+      <div class="form-group">
+        <label for="Quantity">Quantity</label>
+        <select class="form-control" id="Quantity" name="quantity">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="date">Date</label>
+        <input class="form-control" value="<%=edit_sale.date%>" name="date" >
+      </div>
+
+      <div class="form-group">
+        <label for="month">Month</label>
+        <input class="form-control" value="<%=edit_sale.month%>" name="month" >
+      </div>
+
+      <div class="form-group">
+        <label for="year">Year</label>
+        <input class="form-control" value="<%=edit_sale.year%>" name="year" >
+      </div>
+
+      <div class="form-group">
+        <label for="hour">Hours</label>
+        <input class="form-control" value="<%=edit_sale.hour%>" name="hour" >
+      </div>
+
+      <div class="form-group">
+        <label for="min">Minute</label>
+        <input class="form-control" value="<%=edit_sale.minute%>" name="min" >
+      </div>
+
+      <div class="form-group">
+        <label for="weekinYear">Week No.</label>
+        <input class="form-control" value="<%=edit_sale.weekyear%>" name="weekinYear" >
+      </div>
+
+
+
+      <div class="submitbutton">
+          <button class="btn btn-default">Submit</button>
+      </div>
+    </form>
+
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="../js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../js/bootstrap.min.js"></script>
 
 </body>
 
