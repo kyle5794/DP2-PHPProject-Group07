@@ -1,0 +1,11 @@
+{
+  "name": "phpinc",
+  "version": "1.0.0",
+  "description": "This project is for SP2 Unit at Swinburne",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Group7",
+  "license": "ISC"
+}
