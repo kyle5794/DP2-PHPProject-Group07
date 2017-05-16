@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>PEOPLE HEALTH PHARMACY INC.</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../css/one-page-wonder.css" rel="stylesheet">
+
+    <!-- jQuery -->
+    <script src="../css/jquery-3.2.0.js"></script>
+    <!-- Resources for Charts-->
+    <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+    <script src="https://www.amcharts.com/lib/3/serial.js"></script>
+    <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+    <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<script>
+    $(document).ready(function(){
+
+    })
+</script>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">PHP</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#about">About Group 7</a>
+                    </li>
+                    <li>
+                        <a href="#services">Services</a>
+                    </li>
+                    <li>
+                        <a href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <hr class="featurette-divider">
+    <table class = "table">
+      <thead>
+        <tr>
+          <td>Name</td>
+          <td>Total Sales</td>
+          <td>Last month sales</td>
+          <td>Last week sales</td>
+          <td>Current Stock Status</td>
+        </tr>
+      </thead>
+      <tbody>
+
+        <% list.forEach(function(report){ %>
+          <tr class='showing <%=report.name%>'>
+            <td><%=report[0]%></td>
+            <td><%=report[1]%></td>
+            <td><%=report[2]%></td>
+            <td><%=report[3]%></td>
+            <td><%=report[4]%></td>
+          </tr>
+          <%
+        }); %>
+
+
+      </tbody>
+    </table>
+    <!-- /.container -->
+    <!-- Styles -->
+<style>
+#monthChart {
+	width		: 100%;
+	height		: 500px;
+	font-size	: 11px;
+}
+
+#weekChart {
+	width		: 100%;
+	height		: 500px;
+	font-size	: 11px;
+}
+</style>
+
+
+<!-- Chart code -->
+<script>
+var month = [];
+var week = [];
+var list = <%- JSON.stringify(list) %>;
+//console.log(list[0]);
+list.forEach(function(item){
+  month.push({"item": item[0], "monthSales": item[2]});
+
+  week.push({"item": item[0], "weekSales": item[3]});
+});
+
+//console.log(month);
+var chart = AmCharts.makeChart( "monthChart", {
+  "type": "serial",
+  "theme": "light",
+  "dataProvider": month,
+  "valueAxes": [ {
+    "gridColor": "#FFFFFF",
+    "gridAlpha": 0.2,
+    "dashLength": 0
+  } ],
+  "gridAboveGraphs": true,
+  "startDuration": 1,
+  "graphs": [ {
+    "balloonText": "[[category]]: <b>[[value]]</b>",
+    "fillAlphas": 0.8,
+    "lineAlpha": 0.2,
+    "type": "column",
+    "valueField": "monthSales"
+  } ],
+  "chartCursor": {
+    "categoryBalloonEnabled": false,
+    "cursorAlpha": 0,
+    "zoomable": false
+  },
+  "categoryField": "item",
+  "categoryAxis": {
+    "gridPosition": "start",
+    "gridAlpha": 0,
+    "tickPosition": "start",
+    "tickLength": 20
+  },
+  "export": {
+    "enabled": true
+  }
+
+} );
+
+var chart = AmCharts.makeChart( "weekChart", {
+  "type": "serial",
+  "theme": "light",
+  "dataProvider": week,
+  "valueAxes": [ {
+    "gridColor": "#FFFFFF",
+    "gridAlpha": 0.2,
+    "dashLength": 0
+  } ],
+  "gridAboveGraphs": true,
+  "startDuration": 1,
+  "graphs": [ {
+    "balloonText": "[[category]]: <b>[[value]]</b>",
+    "fillAlphas": 0.8,
+    "lineAlpha": 0.2,
+    "type": "column",
+    "valueField": "weekSales"
+  } ],
+  "chartCursor": {
+    "categoryBalloonEnabled": false,
+    "cursorAlpha": 0,
+    "zoomable": false
+  },
+  "categoryField": "item",
+  "categoryAxis": {
+    "gridPosition": "start",
+    "gridAlpha": 0,
+    "tickPosition": "start",
+    "tickLength": 20
+  },
+  "export": {
+    "enabled": true
+  }
+
+} );
+</script>
+
+<!-- HTML -->
+<hr class="featurette-divider">
+<h2>Month Sales Chart Comparison</h2>
+<div id="monthChart"></div>
+<hr class="featurette-divider">
+<h2>Week Sales Chart Comparison</h2>
+
+<div id="weekChart"></div>
+    <!-- jQuery -->
+    <script src="../../js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../../js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
