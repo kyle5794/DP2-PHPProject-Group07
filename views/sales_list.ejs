@@ -5,15 +5,19 @@
     <meta charset="utf-8">
     <title>PEOPLE HEALTH PHARMACY INC.</title>
 
-    <!-- Bootstrap Core CSS -->
-    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <!--
+    <!-- Bootstrap Core CSS
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">-->
 
     <!-- Custom CSS -->
     <link href="../../css/one-page-wonder.css" rel="stylesheet">
 
-    <!-- jQuery -->
-    <script src="../../css/jquery-3.2.0.js"></script>
+    <!-- jQuery
+    <script src="../../css/jquery-3.2.0.js"></script>-->
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -24,7 +28,18 @@
 
 <script>
     $(document).ready(function(){
+      $('#search').on('click',function(){
+          var search = $(".search_domain").val();
+          search = '.' + search;
+          if (search.length !== 1){
+            $('.showing').hide();
+            $(search).show();
+          }
+          else {
+            $('.showing').show();
+          }
 
+        });
     })
 </script>
 <body>
@@ -63,15 +78,18 @@
 
     <!-- Full Width Image Header -->
 
-    <header class="header-image">
-        <div class="headline">
-            <div class="container">
-                <h1>Sales list</h1>
-            </div>
-        </div>
-    </header>
-
     <!-- Page Content -->
+    <hr class="featurette-divider">
+    <div id="custom-search-input">
+         <div class="input-group col-md-12">
+             <input type="text" class="search-query form-control search_domain" placeholder="Search" />
+             <span class="input-group-btn">
+                 <button class="btn btn-danger" type="button" id ="search">
+                     <span class=" glyphicon glyphicon-search"></span>
+                 </button>
+             </span>
+         </div>
+    </div>
     <hr class="featurette-divider">
     <table class = "table">
       <thead>
@@ -86,7 +104,7 @@
       </thead>
       <tbody>
         <% list.rows.forEach(function(sale){ %>
-          <tr>
+          <tr class='showing <%=sale.name%>'>
             <td><%=sale.id%></td>
             <td><%=sale.name%></td>
             <td><%=sale.quantity%></td>
